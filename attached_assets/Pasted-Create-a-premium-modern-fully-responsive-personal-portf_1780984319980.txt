@@ -1,0 +1,267 @@
+Create a premium, modern, fully responsive personal portfolio website for Devansh Saxena with a design inspired by modern SaaS products and Replit. The website should look professional, clean, and suitable for software engineering internships and entry-level developer roles.
+
+DESIGN REQUIREMENTS:
+
+* Modern SaaS-style UI
+* Dark mode and Light mode toggle with smooth transition
+* Glassmorphism cards
+* Gradient accents
+* Smooth scrolling
+* Subtle animations using Framer Motion
+* Professional typography
+* Fully responsive for mobile, tablet, and desktop
+* Clean spacing and modern layout
+* Elegant hover effects
+* Animated section transitions
+* Professional developer portfolio appearance
+
+COLOR SYSTEM:
+
+Dark Theme:
+
+* Background: #0F172A
+* Cards: rgba(30,41,59,0.65)
+* Accent Blue: #38BDF8
+* Accent Purple: #8B5CF6
+* Text: #F8FAFC
+
+Light Theme:
+
+* Background: #F8FAFC
+* Cards: rgba(255,255,255,0.8)
+* Text: #0F172A
+
+WEBSITE STRUCTURE:
+
+1. NAVBAR
+
+* Logo: Devansh Saxena
+* Home
+* About
+* Skills
+* Experience
+* Projects
+* Certificates
+* Education
+* Contact
+* Dark/Light Theme Toggle
+* Smooth scrolling navigation
+
+2. HERO SECTION
+
+Display:
+
+Devansh Saxena
+
+Software Engineer
+
+Motivated B.Tech Information Technology student seeking an entry-level opportunity to apply my knowledge of Python, Java, and web development. Eager to contribute to real-world projects, enhance technical skills, and grow as a software developer in a dynamic organization.
+
+Buttons:
+
+* View Projects
+* Contact Me
+* Download Resume
+
+Display prominently:
+
+* Email: [dhruvsaxena137@gmail.com](mailto:dhruvsaxena137@gmail.com)
+* GitHub Icon
+* LinkedIn Icon
+
+Add:
+
+* Animated background effects
+* Floating glass elements
+* Professional coding-themed illustration
+* Typewriter effect for Software Engineer title
+
+3. ABOUT SECTION
+
+Title:
+About Me
+
+Content:
+
+I am a B.Tech Information Technology student at Shri Ramswaroop Memorial College of Engineering and Management. I am passionate about software development, web technologies, and problem-solving. I enjoy building practical applications and continuously improving my technical skills through projects, internships, and hands-on learning experiences.
+
+Location:
+Lucknow, India
+
+4. SKILLS SECTION
+
+Programming Languages:
+
+* Java (Basic to Moderate)
+* Python (Basic)
+* C (Basic)
+
+Frameworks & Technologies:
+
+* React.js
+* Django REST Framework
+
+Tools:
+
+* Git
+* GitHub
+
+Display:
+
+* Skill cards
+* Technology icons
+* Hover animations
+* Animated progress indicators
+
+5. EXPERIENCE SECTION
+
+Title:
+Experience
+
+Role:
+Full Stack Developer Trainee (Django)
+
+Organization:
+SRDT
+
+Description:
+Worked on full-stack web development concepts using Django and related technologies while gaining practical experience in backend development, API integration, REST APIs, and software development workflows.
+
+6. PROJECTS SECTION
+
+Premium project showcase card.
+
+Project Name:
+Daily Planner
+
+Category:
+Web Application
+
+Description:
+A daily planning application designed to help users manage tasks efficiently, improve productivity, organize schedules, and track daily goals through an intuitive interface.
+
+Tech Stack:
+
+Frontend:
+
+* React.js
+
+Backend:
+
+* Django REST Framework
+
+Features:
+
+* Task Management
+* Daily Planning
+* Productivity Tracking
+* Clean User Interface
+* Efficient Task Organization
+
+Add:
+
+* Animated project card
+* Modern hover effects
+* Tech stack badges
+
+7. CERTIFICATES SECTION
+
+Certificate 1:
+Mobile Application Development Completion Certificate (Internship)
+
+Certificate 2:
+Python Full-Stack Development Completion Certificate (Internship)
+
+Display certificates as premium glassmorphism cards with icons and animations.
+
+8. EDUCATION SECTION
+
+B.Tech Information Technology
+Shri Ramswaroop Memorial College of Engineering and Management
+
+Intermediate
+City Montessori School, Lucknow
+89.75%
+
+High School
+City Montessori School, Lucknow
+94.5%
+
+Display as a modern animated timeline.
+
+9. CONTACT SECTION
+
+Phone:
+8317085372
+
+Email:
+[dhruvsaxena137@gmail.com](mailto:dhruvsaxena137@gmail.com)
+
+Location:
+Lucknow, India
+
+GitHub:
+https://github.com/devanshsaxena-sys
+
+LinkedIn:
+https://www.linkedin.com/in/devansh-saxena-4332a0330
+
+Create:
+
+* Clickable Email Button
+* Click-to-Call Phone Button
+* GitHub Icon Link
+* LinkedIn Icon Link
+* Contact Form
+
+Contact Form Fields:
+
+* Name
+* Email
+* Subject
+* Message
+
+Use:
+
+* Glassmorphism cards
+* Smooth hover animations
+* Modern layout
+
+10. FOOTER
+
+Display:
+Devansh Saxena © 2026
+
+Include:
+
+* GitHub Link
+* LinkedIn Link
+* Email Link
+
+TECHNICAL REQUIREMENTS:
+
+* React.js
+* Tailwind CSS
+* Framer Motion
+* React Icons
+* Responsive Design
+* SEO-Friendly Structure
+* Component-Based Architecture
+* Fast Loading
+* Smooth Animations
+* Professional Developer Portfolio Aesthetic
+
+EXTRA FEATURES:
+
+* Scroll Progress Indicator
+* Back-to-Top Button
+* Smooth Section Reveal Animations
+* Animated Background Gradient
+* Floating Particles
+* Modern Loading Animation
+* Responsive Mobile Menu
+* Premium Replit-style Design
+
+IMPORTANT:
+
+The website must feel like a premium software engineer portfolio rather than a student template. Focus on modern SaaS aesthetics, excellent responsiveness, glassmorphism, elegant animations, and a professional developer brand suitable for internships, placements, and software engineering opportunities.
