@@ -9,7 +9,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { FaJava, FaLinkedin } from "react-icons/fa";
-import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle } from "lucide-react";
+import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle, ExternalLink } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import devanshPhoto from "@assets/WhatsApp_Image_2026-03-13_at_9.01.26_PM_1781159314441.jpeg";
@@ -979,19 +979,26 @@ export default function Home() {
                       <p className="text-secondary font-medium text-sm">Completion Certificate</p>
                     </div>
                   </div>
-                  <div className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-primary/40 transition-all hover:shadow-lg group">
-                    <div className="p-3 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground transition-all">
+                  <a
+                    href={`${import.meta.env.BASE_URL}DSA_Certificate.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-dsa-certificate"
+                    className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-primary/40 transition-all hover:shadow-lg group cursor-pointer"
+                  >
+                    <div className="p-3 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground transition-all flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-lg leading-tight mb-1">
                         Data Structures &amp; Algorithms (DSA)
                       </h3>
                       <p className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-medium text-sm">Completion Certificate</p>
                     </div>
-                  </div>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                  </a>
                 </div>
               </motion.div>
 
