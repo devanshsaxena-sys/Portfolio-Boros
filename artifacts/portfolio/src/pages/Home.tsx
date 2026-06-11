@@ -9,7 +9,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { FaJava, FaLinkedin } from "react-icons/fa";
-import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle, ExternalLink } from "lucide-react";
+import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle, ExternalLink, Star, GitFork, Code2 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import devanshPhoto from "@assets/WhatsApp_Image_2026-03-13_at_9.01.26_PM_1781159314441.jpeg";
@@ -20,6 +20,7 @@ const navLinks = [
   "Skills",
   "Experience",
   "Projects",
+  "Repos",
   "Certificates",
   "Education",
   "Contact",
@@ -515,6 +516,208 @@ const ResumeDownloadButton = () => {
         )}
       </AnimatePresence>
     </motion.button>
+  );
+};
+
+const LANG_COLORS: Record<string, string> = {
+  JavaScript: "#f7df1e",
+  TypeScript: "#3178c6",
+  Python: "#3572A5",
+  Java: "#b07219",
+  "C++": "#f34b7d",
+  C: "#555555",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Go: "#00ADD8",
+  Rust: "#dea584",
+  Ruby: "#701516",
+  PHP: "#4F5D95",
+  Unknown: "#8b5cf6",
+};
+
+interface Repo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  updated_at: string;
+  topics: string[];
+}
+
+const RepoCard = ({ repo, index }: { repo: Repo; index: number }) => {
+  const langColor = LANG_COLORS[repo.language || "Unknown"] ?? LANG_COLORS.Unknown;
+  const updated = new Date(repo.updated_at).toLocaleDateString("en-US", {
+    month: "short", year: "numeric",
+  });
+
+  return (
+    <motion.a
+      href={repo.html_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      whileHover={{ y: -4, scale: 1.01 }}
+      className="group flex flex-col bg-card/50 backdrop-blur-md border border-border/40 rounded-2xl p-6 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all cursor-pointer"
+      data-testid={`card-repo-${repo.id}`}
+    >
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <Code2 className="w-4 h-4 text-primary flex-shrink-0" />
+          <span className="font-bold text-base truncate group-hover:text-primary transition-colors">
+            {repo.name}
+          </span>
+        </div>
+        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+      </div>
+
+      <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1 line-clamp-2">
+        {repo.description || "No description provided."}
+      </p>
+
+      {repo.topics && repo.topics.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {repo.topics.slice(0, 3).map((t) => (
+            <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div className="flex items-center gap-4 text-xs text-muted-foreground mt-auto pt-3 border-t border-border/30">
+        {repo.language && (
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: langColor }} />
+            {repo.language}
+          </span>
+        )}
+        <span className="flex items-center gap-1">
+          <Star className="w-3.5 h-3.5" />
+          {repo.stargazers_count}
+        </span>
+        <span className="flex items-center gap-1">
+          <GitFork className="w-3.5 h-3.5" />
+          {repo.forks_count}
+        </span>
+        <span className="ml-auto">Updated {updated}</span>
+      </div>
+    </motion.a>
+  );
+};
+
+const RepoSkeleton = () => (
+  <div className="flex flex-col bg-card/50 border border-border/40 rounded-2xl p-6 animate-pulse">
+    <div className="flex items-center gap-2 mb-3">
+      <div className="w-4 h-4 bg-muted rounded" />
+      <div className="h-4 bg-muted rounded w-32" />
+    </div>
+    <div className="space-y-2 mb-4 flex-1">
+      <div className="h-3 bg-muted rounded w-full" />
+      <div className="h-3 bg-muted rounded w-3/4" />
+    </div>
+    <div className="flex gap-4 pt-3 border-t border-border/30">
+      <div className="h-3 bg-muted rounded w-16" />
+      <div className="h-3 bg-muted rounded w-10" />
+      <div className="h-3 bg-muted rounded w-10" />
+    </div>
+  </div>
+);
+
+const GitHubRepos = () => {
+  const [repos, setRepos] = useState<Repo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch("https://api.github.com/users/devanshsaxena-sys/repos?sort=updated&per_page=8")
+      .then((r) => {
+        if (!r.ok) throw new Error("GitHub API error");
+        return r.json();
+      })
+      .then((data: Repo[]) => {
+        setRepos(data.filter((r) => !r.name.startsWith("Portfolio-Boros")));
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <section id="repos" className="py-24 bg-muted/20 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 text-center"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <SiGithub className="w-8 h-8" />
+            <h2 className="text-3xl md:text-4xl font-bold">GitHub Repositories</h2>
+          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+            Live data from GitHub — my public repositories, languages and activity.
+          </p>
+        </motion.div>
+
+        {error ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16 bg-card/40 backdrop-blur-md border border-border/40 rounded-2xl"
+          >
+            <SiGithub className="w-12 h-12 mx-auto mb-4 text-muted-foreground opacity-40" />
+            <p className="text-muted-foreground">Couldn't load repositories right now.</p>
+            <a
+              href="https://github.com/devanshsaxena-sys"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-4 text-primary hover:underline"
+            >
+              View on GitHub <ExternalLink className="w-4 h-4" />
+            </a>
+          </motion.div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {loading
+              ? Array.from({ length: 6 }).map((_, i) => <RepoSkeleton key={i} />)
+              : repos.map((repo, i) => <RepoCard key={repo.id} repo={repo} index={i} />)}
+          </div>
+        )}
+
+        {!loading && !error && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center mt-12"
+          >
+            <motion.a
+              href="https://github.com/devanshsaxena-sys"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-3 px-8 py-4 rounded-full border border-border/50 bg-card/40 backdrop-blur-sm hover:border-primary/50 hover:bg-primary/5 transition-all font-semibold"
+              data-testid="link-github-all"
+            >
+              <SiGithub className="w-5 h-5" />
+              View all repositories on GitHub
+              <ExternalLink className="w-4 h-4 text-muted-foreground" />
+            </motion.a>
+          </motion.div>
+        )}
+      </div>
+    </section>
   );
 };
 
@@ -1081,6 +1284,8 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
+
+        <GitHubRepos />
 
         {/* Certificates & Education */}
         <section id="certificates" className="py-24 relative">
