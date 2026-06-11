@@ -9,7 +9,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { FaJava, FaLinkedin } from "react-icons/fa";
-import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import devanshPhoto from "@assets/WhatsApp_Image_2026-03-13_at_9.01.26_PM_1781159314441.jpeg";
@@ -431,6 +431,93 @@ const FloatingSnippets = () => {
   );
 };
 
+const ResumeDownloadButton = () => {
+  const [downloaded, setDownloaded] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = () => {
+    if (downloading || downloaded) return;
+    setDownloading(true);
+    setTimeout(() => {
+      const link = document.createElement("a");
+      link.href = `${import.meta.env.BASE_URL}Devansh_Saxena_Resume.pdf`;
+      link.download = "Devansh_Saxena_Resume.pdf";
+      link.click();
+      setDownloading(false);
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 3000);
+    }, 800);
+  };
+
+  return (
+    <motion.button
+      onClick={handleDownload}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.97 }}
+      data-testid="btn-download-resume"
+      className="relative flex items-center gap-2.5 px-8 h-11 rounded-full text-sm font-semibold overflow-hidden border border-primary/40 bg-primary/5 backdrop-blur-sm hover:bg-primary/10 transition-colors"
+      style={{ cursor: "pointer" }}
+    >
+      {/* Animated shimmer sweep */}
+      <motion.span
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent -skew-x-12"
+        initial={{ x: "-100%" }}
+        animate={{ x: "200%" }}
+        transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }}
+      />
+
+      <AnimatePresence mode="wait">
+        {downloading ? (
+          <motion.span
+            key="downloading"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="flex items-center gap-2 text-primary"
+          >
+            <motion.span
+              animate={{ rotate: 360 }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+              className="block"
+            >
+              <FileText className="h-4 w-4" />
+            </motion.span>
+            Preparing…
+          </motion.span>
+        ) : downloaded ? (
+          <motion.span
+            key="done"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex items-center gap-2 text-green-400"
+          >
+            <CheckCircle className="h-4 w-4" />
+            Downloaded!
+          </motion.span>
+        ) : (
+          <motion.span
+            key="idle"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex items-center gap-2 text-foreground"
+          >
+            <motion.span
+              animate={{ y: [0, 3, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              className="block"
+            >
+              <Download className="h-4 w-4 text-primary" />
+            </motion.span>
+            Download Resume
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  );
+};
+
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -613,23 +700,28 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-12">
-                  <Button
-                    size="lg"
-                    onClick={() => scrollTo("projects")}
-                    className="bg-gradient-to-r from-primary to-secondary text-white border-0 hover:opacity-90 transition-opacity rounded-full px-8 shadow-lg shadow-primary/25"
-                    data-testid="btn-view-projects"
-                  >
-                    View Projects
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    onClick={() => scrollTo("contact")}
-                    className="rounded-full px-8 border-border/50 hover:bg-accent backdrop-blur-sm"
-                    data-testid="btn-contact-me"
-                  >
-                    Contact Me
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                    <Button
+                      size="lg"
+                      onClick={() => scrollTo("projects")}
+                      className="bg-gradient-to-r from-primary to-secondary text-white border-0 hover:opacity-90 transition-opacity rounded-full px-8 shadow-lg shadow-primary/25"
+                      data-testid="btn-view-projects"
+                    >
+                      View Projects
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => scrollTo("contact")}
+                      className="rounded-full px-8 border-border/50 hover:bg-accent backdrop-blur-sm"
+                      data-testid="btn-contact-me"
+                    >
+                      Contact Me
+                    </Button>
+                  </motion.div>
+                  <ResumeDownloadButton />
                 </div>
 
                 <div className="flex space-x-6">
