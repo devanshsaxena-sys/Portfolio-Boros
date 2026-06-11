@@ -887,6 +887,19 @@ export default function Home() {
                       <p className="text-secondary font-medium text-sm">Completion Certificate</p>
                     </div>
                   </div>
+                  <div className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-primary/40 transition-all hover:shadow-lg group">
+                    <div className="p-3 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-primary-foreground transition-all">
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg leading-tight mb-1">
+                        Data Structures &amp; Algorithms (DSA)
+                      </h3>
+                      <p className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-medium text-sm">Completion Certificate</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
