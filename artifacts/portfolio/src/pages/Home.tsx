@@ -518,6 +518,150 @@ const ResumeDownloadButton = () => {
   );
 };
 
+const ContactForm = () => {
+  const [fields, setFields] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!fields.name || !fields.email || !fields.subject || !fields.message) return;
+    setStatus("sending");
+
+    const body = `Name: ${fields.name}\nEmail: ${fields.email}\n\n${fields.message}`;
+    const mailtoUrl = `mailto:dhruvsaxena137@gmail.com?subject=${encodeURIComponent(fields.subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, "_blank");
+
+    setTimeout(() => {
+      setStatus("sent");
+      setFields({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 4000);
+    }, 600);
+  };
+
+  const inputClass =
+    "w-full bg-background/80 border border-input rounded-2xl px-5 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all backdrop-blur-sm";
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5" data-testid="contact-form">
+      <div>
+        <input
+          name="name"
+          type="text"
+          placeholder="Your Name"
+          required
+          value={fields.name}
+          onChange={handleChange}
+          className={inputClass}
+          data-testid="input-name"
+        />
+      </div>
+      <div>
+        <input
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          required
+          value={fields.email}
+          onChange={handleChange}
+          className={inputClass}
+          data-testid="input-email"
+        />
+      </div>
+      <div>
+        <input
+          name="subject"
+          type="text"
+          placeholder="Subject"
+          required
+          value={fields.subject}
+          onChange={handleChange}
+          className={inputClass}
+          data-testid="input-subject"
+        />
+      </div>
+      <div>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows={5}
+          required
+          value={fields.message}
+          onChange={handleChange}
+          className={`${inputClass} resize-none`}
+          data-testid="input-message"
+        />
+      </div>
+
+      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+        <Button
+          type="submit"
+          disabled={status === "sending" || status === "sent"}
+          className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white border-0 py-7 rounded-2xl text-lg font-bold shadow-lg shadow-primary/20 transition-all disabled:opacity-80"
+          data-testid="btn-submit-contact"
+        >
+          <AnimatePresence mode="wait">
+            {status === "sending" ? (
+              <motion.span
+                key="sending"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className="flex items-center justify-center gap-3"
+              >
+                <motion.span
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                  className="block w-5 h-5 border-2 border-white/40 border-t-white rounded-full"
+                />
+                Opening email app…
+              </motion.span>
+            ) : status === "sent" ? (
+              <motion.span
+                key="sent"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center justify-center gap-3"
+              >
+                <CheckCircle className="w-5 h-5" />
+                Email client opened!
+              </motion.span>
+            ) : (
+              <motion.span
+                key="idle"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center justify-center gap-3"
+              >
+                <Mail className="w-5 h-5" />
+                Send Message
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </Button>
+      </motion.div>
+
+      <AnimatePresence>
+        {status === "sent" && (
+          <motion.p
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            className="text-center text-sm text-muted-foreground"
+          >
+            Your email app opened with the message pre-filled. Just hit send!
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </form>
+  );
+};
+
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1104,54 +1248,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    alert("Message sent successfully!");
-                    (e.target as HTMLFormElement).reset();
-                  }}
-                  className="space-y-5"
-                >
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      required
-                      className="w-full bg-background/80 border border-input rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all backdrop-blur-sm"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      required
-                      className="w-full bg-background/80 border border-input rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all backdrop-blur-sm"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Subject"
-                      required
-                      className="w-full bg-background/80 border border-input rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all backdrop-blur-sm"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      rows={5}
-                      required
-                      className="w-full bg-background/80 border border-input rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none backdrop-blur-sm"
-                    ></textarea>
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white border-0 py-7 rounded-2xl text-lg font-bold shadow-lg shadow-primary/20 hover:-translate-y-1 transition-all"
-                    data-testid="btn-submit-contact"
-                  >
-                    Send Message
-                  </Button>
-                </form>
+                <ContactForm />
               </div>
             </motion.div>
           </div>
