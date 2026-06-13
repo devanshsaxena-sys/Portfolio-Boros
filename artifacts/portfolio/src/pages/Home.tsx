@@ -1302,32 +1302,46 @@ export default function Home() {
                   Certificates
                 </h2>
                 <div className="space-y-6">
-                  <div className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-primary/50 transition-all hover:shadow-lg group">
-                    <div className="p-3 bg-primary/10 rounded-xl text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <a
+                    href={`${import.meta.env.BASE_URL}Mobile_App_Certificate.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-mobile-certificate"
+                    className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-primary/50 transition-all hover:shadow-lg group cursor-pointer"
+                  >
+                    <div className="p-3 bg-primary/10 rounded-xl text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-lg leading-tight mb-1">
                         Mobile Application Development
                       </h3>
                       <p className="text-primary font-medium text-sm">Completion Certificate</p>
                     </div>
-                  </div>
-                  <div className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-secondary/50 transition-all hover:shadow-lg group">
-                    <div className="p-3 bg-secondary/10 rounded-xl text-secondary group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors">
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 mt-1" />
+                  </a>
+                  <a
+                    href={`${import.meta.env.BASE_URL}Python_FullStack_Certificate.jpg`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-python-certificate"
+                    className="bg-card/50 backdrop-blur-sm border border-border/40 rounded-2xl p-6 flex items-start space-x-5 hover:border-secondary/50 transition-all hover:shadow-lg group cursor-pointer"
+                  >
+                    <div className="p-3 bg-secondary/10 rounded-xl text-secondary group-hover:bg-secondary group-hover:text-secondary-foreground transition-colors flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-lg leading-tight mb-1">
                         Python Full-Stack Development
                       </h3>
-                      <p className="text-secondary font-medium text-sm">Completion Certificate</p>
+                      <p className="text-secondary font-medium text-sm">Completion Certificate · SRDT PVT. LTD</p>
                     </div>
-                  </div>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-secondary transition-colors flex-shrink-0 mt-1" />
+                  </a>
                   <a
                     href={`${import.meta.env.BASE_URL}DSA_Certificate.pdf`}
                     target="_blank"
