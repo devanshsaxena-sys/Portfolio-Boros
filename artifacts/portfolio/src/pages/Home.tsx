@@ -12,7 +12,7 @@ import { FaJava, FaLinkedin } from "react-icons/fa";
 import { Moon, Sun, Menu, X, ArrowUp, Mail, MapPin, Phone, Download, FileText, CheckCircle, ExternalLink, Star, GitFork, Code2 } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
-import devanshPhoto from "@assets/WhatsApp_Image_2026-03-13_at_9.01.26_PM_1781159314441.jpeg";
+import devanshPhoto from "@assets/devansh-photo.jpeg";
 
 const navLinks = [
   "Home",
