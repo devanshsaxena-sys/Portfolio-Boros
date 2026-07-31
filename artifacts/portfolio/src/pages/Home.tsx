@@ -275,20 +275,39 @@ const ShootingStars = () => {
   );
 };
 
-const ProjectCard3D = () => {
+type ProjectCardProps = {
+  title: string;
+  category: string;
+  description: string;
+  technologies: { label: string; variant: "primary" | "secondary" }[];
+  features: string[];
+  liveUrl: string;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
+const ProjectCard3D = ({
+  title,
+  category,
+  description,
+  technologies,
+  features,
+  liveUrl,
+  gradientFrom,
+  gradientTo,
+}: ProjectCardProps) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    
     setRotateX(-y / 10);
     setRotateY(x / 10);
   };
-  
+
   const handleMouseLeave = () => {
     setRotateX(0);
     setRotateY(0);
@@ -304,41 +323,57 @@ const ProjectCard3D = () => {
       <motion.div
         animate={{ rotateX, rotateY }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl overflow-hidden group cursor-pointer h-full relative"
+        className="bg-card/60 backdrop-blur-md border border-border/50 rounded-2xl overflow-hidden group cursor-pointer h-full relative flex flex-col"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-        <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden flex items-center justify-center">
+        <div
+          className="h-48 relative overflow-hidden flex items-center justify-center"
+          style={{ background: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})` }}
+        >
           <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]" />
-          <h3 className="text-3xl font-bold text-foreground/80 group-hover:scale-110 transition-transform duration-500">
-            Daily Planner
+          <h3 className="text-3xl font-bold text-white/90 group-hover:scale-110 transition-transform duration-500 drop-shadow-lg text-center px-4">
+            {title}
           </h3>
         </div>
-        <div className="p-6 md:p-8">
-          <h3 className="text-2xl font-bold mb-2">Daily Planner</h3>
-          <p className="text-sm text-primary mb-4">Web Application</p>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
-            A daily planning application designed to help users manage
-            tasks efficiently, improve productivity, organize schedules,
-            and track daily goals through an intuitive interface.
-          </p>
+        <div className="p-6 md:p-8 flex flex-col flex-1">
+          <h3 className="text-2xl font-bold mb-2">{title}</h3>
+          <p className="text-sm text-primary mb-4">{category}</p>
+          <p className="text-muted-foreground mb-6 leading-relaxed">{description}</p>
           <div className="mb-6">
             <h4 className="text-sm font-semibold mb-2">Technologies:</h4>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                React.js (Frontend)
-              </span>
-              <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-medium">
-                Django REST (Backend)
-              </span>
+              {technologies.map((tech, i) => (
+                <span
+                  key={i}
+                  className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    tech.variant === "primary"
+                      ? "bg-primary/10 text-primary"
+                      : "bg-secondary/10 text-secondary"
+                  }`}
+                >
+                  {tech.label}
+                </span>
+              ))}
             </div>
           </div>
-          <div>
+          <div className="mb-6">
             <h4 className="text-sm font-semibold mb-2">Features:</h4>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside pl-2">
-              <li>Task Management & Daily Planning</li>
-              <li>Productivity Tracking</li>
-              <li>Clean UI & Efficient Task Organization</li>
+              {features.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
             </ul>
+          </div>
+          <div className="mt-auto pt-2">
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 hover:border-primary/60 rounded-lg text-sm font-medium transition-all duration-200"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Live Demo
+            </a>
           </div>
         </div>
       </motion.div>
@@ -1280,7 +1315,56 @@ export default function Home() {
               viewport={{ once: true }}
               className="grid md:grid-cols-2 gap-8"
             >
-              <ProjectCard3D />
+              <ProjectCard3D
+                title="Blinkit Clone"
+                category="Full Stack Grocery Delivery Web Application"
+                description="A full-stack grocery delivery platform inspired by Blinkit that enables users to browse products, search by category, manage their cart, securely place orders, and complete online payments. Built with a scalable backend using Node.js, Express.js, MySQL, and Sequelize, and a modern frontend using React and Vite."
+                technologies={[
+                  { label: "React.js", variant: "primary" },
+                  { label: "Vite", variant: "secondary" },
+                  { label: "Node.js", variant: "primary" },
+                  { label: "Express.js", variant: "secondary" },
+                  { label: "MySQL", variant: "primary" },
+                  { label: "Sequelize ORM", variant: "secondary" },
+                  { label: "REST APIs", variant: "primary" },
+                  { label: "Razorpay", variant: "secondary" },
+                ]}
+                features={[
+                  "User Authentication",
+                  "Product Catalog & Category Filtering",
+                  "Product Search",
+                  "Shopping Cart",
+                  "Secure Checkout",
+                  "Online Payment Integration",
+                  "Order Management",
+                  "Responsive UI",
+                ]}
+                liveUrl="https://blinkit-devansh-saxena.vercel.app/"
+                gradientFrom="#10b981"
+                gradientTo="#059669"
+              />
+              <ProjectCard3D
+                title="Space Explorer 3D"
+                category="Interactive 3D Web Experience"
+                description="An immersive 3D solar system built using React, Three.js, and React Three Fiber. Users can explore animated planets, enjoy dynamic lighting effects, and navigate the scene with smooth camera controls, showcasing modern WebGL and real-time 3D rendering."
+                technologies={[
+                  { label: "React.js", variant: "primary" },
+                  { label: "Three.js", variant: "secondary" },
+                  { label: "React Three Fiber", variant: "primary" },
+                  { label: "JavaScript", variant: "secondary" },
+                ]}
+                features={[
+                  "Interactive 3D Solar System",
+                  "Animated Planets",
+                  "Smooth Camera Controls",
+                  "Dynamic Lighting",
+                  "Responsive Design",
+                  "Optimized Rendering",
+                ]}
+                liveUrl="https://space-3d-iota.vercel.app/"
+                gradientFrom="#1e1b4b"
+                gradientTo="#4c1d95"
+              />
             </motion.div>
           </div>
         </section>

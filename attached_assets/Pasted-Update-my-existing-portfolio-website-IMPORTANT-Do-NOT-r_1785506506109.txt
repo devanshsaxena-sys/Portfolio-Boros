@@ -1,0 +1,99 @@
+Update my existing portfolio website.
+
+IMPORTANT:
+- Do NOT redesign the portfolio.
+- Do NOT change the navbar, hero section, theme, typography, colors, animations, responsiveness, spacing, or layout.
+- Keep the current premium look exactly the same.
+- Only replace the existing "Daily Planner" project with my two latest projects.
+
+==================================================
+REMOVE
+==================================================
+
+- Remove the Daily Planner project completely.
+- Remove its image, description, technologies, features, and all references.
+
+==================================================
+PROJECT 1
+==================================================
+
+Title:
+Blinkit Clone
+
+Category:
+Full Stack Grocery Delivery Web Application
+
+Description:
+A full-stack grocery delivery platform inspired by Blinkit that enables users to browse products, search by category, manage their cart, securely place orders, and complete online payments. Built with a scalable backend using Node.js, Express.js, MySQL, and Sequelize, and a modern frontend using React and Vite.
+
+Technologies:
+- React.js
+- Vite
+- Node.js
+- Express.js
+- MySQL
+- Sequelize ORM
+- REST APIs
+- Razorpay
+
+Features:
+• User Authentication
+• Product Catalog
+• Category Filtering
+• Product Search
+• Shopping Cart
+• Secure Checkout
+• Online Payment Integration
+• Order Management
+• Responsive UI
+
+Live Demo:
+https://blinkit-devansh-saxena.vercel.app/
+
+Use a modern grocery/e-commerce themed thumbnail if needed.
+
+==================================================
+PROJECT 2
+==================================================
+
+Title:
+Space Explorer 3D
+
+Category:
+Interactive 3D Web Experience
+
+Description:
+An immersive 3D solar system built using React, Three.js, and React Three Fiber. Users can explore animated planets, enjoy dynamic lighting effects, and navigate the scene with smooth camera controls, showcasing modern WebGL and real-time 3D rendering.
+
+Technologies:
+- React.js
+- Three.js
+- React Three Fiber
+- JavaScript
+
+Features:
+• Interactive 3D Solar System
+• Animated Planets
+• Smooth Camera Controls
+• Dynamic Lighting
+• Responsive Design
+• Optimized Rendering
+
+Live Demo:
+https://space-3d-iota.vercel.app/
+
+Use a futuristic space-themed thumbnail if needed.
+
+==================================================
+REQUIREMENTS
+==================================================
+
+- Preserve the exact existing project page layout.
+- Keep all animations and hover effects.
+- Keep technology badges in the same style.
+- Keep feature lists in the same style.
+- Maintain responsive design.
+- Update only the project content.
+- Use the provided Live Demo URLs.
+- Keep existing GitHub buttons and functionality unchanged.
+- Ensure both projects appear in the Projects section with the same premium styling as the rest of the portfolio.
