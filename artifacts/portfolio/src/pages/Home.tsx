@@ -770,8 +770,8 @@ const ContactForm = () => {
     setStatus("sending");
 
     const body = `Name: ${fields.name}\nEmail: ${fields.email}\n\n${fields.message}`;
-    const mailtoUrl = `mailto:dhruvsaxena137@gmail.com?subject=${encodeURIComponent(fields.subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoUrl, "_blank");
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=dhruvsaxena137@gmail.com&su=${encodeURIComponent(fields.subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailComposeUrl, "_blank", "noopener,noreferrer");
 
     setTimeout(() => {
       setStatus("sent");
@@ -1126,7 +1126,9 @@ export default function Home() {
                     <FaLinkedin className="h-7 w-7" />
                   </a>
                   <a
-                    href="mailto:dhruvsaxena137@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruvsaxena137@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-300"
                     data-testid="link-email"
                   >
@@ -1534,7 +1536,9 @@ export default function Home() {
                       <span className="text-xl font-medium">+91 8317085372</span>
                     </a>
                     <a
-                      href="mailto:dhruvsaxena137@gmail.com"
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruvsaxena137@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center space-x-5 text-muted-foreground hover:text-primary transition-colors group"
                     >
                       <div className="p-4 bg-background border border-border/50 rounded-2xl group-hover:border-primary/50 group-hover:bg-primary/10 transition-all shadow-sm">
@@ -1570,7 +1574,12 @@ export default function Home() {
               <a href="https://www.linkedin.com/in/devansh-saxena-4332a0330" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <FaLinkedin className="h-6 w-6" />
               </a>
-              <a href="mailto:dhruvsaxena137@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruvsaxena137@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Mail className="h-6 w-6" />
               </a>
             </div>
